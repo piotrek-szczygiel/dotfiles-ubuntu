@@ -47,6 +47,10 @@ if [[ $DIST == Ubuntu* ]]; then
         apt_install neovim
         apt_install fish
 
+        if check_cmd "fish"; then
+            chsh -s $(which fish)
+        fi
+
         source $HOME/.cargo/env 2> /dev/null
 
         if ! check_cmd "cargo"; then
