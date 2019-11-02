@@ -9,9 +9,9 @@ alias vi "nvim"
 alias vim "nvim"
 alias svi "sudo -E nvim"
 
-alias ls "exa"
-alias l "exa -lF --git"
-alias la "exa -laF --git"
+alias ls "exa --icons"
+alias l "exa -lF --icons --git"
+alias la "exa -laF --icons --git"
 
 alias cat "bat"
 

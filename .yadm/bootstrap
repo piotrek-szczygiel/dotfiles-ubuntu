@@ -45,6 +45,7 @@ if [[ $DIST == Ubuntu* ]]; then
         echo_yellow "Installing applications"
 
         apt_install build-essential
+        apt_instasll font-config
         apt_install fzy
         apt_install libclang-dev
         apt_install libssl-dev
@@ -87,6 +88,15 @@ if [[ $DIST == Ubuntu* ]]; then
 
             apt_install libharfbuzz-bin libcanberra-dev python3-pygments
             curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+
+            echo_yellow "Adding windows fonts"
+            sudo tee /etc/fonts/local.conf > /dev/null <<EOF
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+    <dir>/mnt/c/Windows/Fonts</dir>
+</fontconfig>
+EOF
         fi
 
         mkdir -p ~/.local/bin
