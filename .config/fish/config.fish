@@ -1,7 +1,7 @@
 set -xg PATH ~/.local/bin ~/.cargo/bin $PATH
 
 set -gx EDITOR nvim
-set -gx VISUAL code --wait
+set -gx VISUAL nvim
 
 alias vi "nvim"
 alias vim "nvim"
