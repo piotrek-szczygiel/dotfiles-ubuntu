@@ -1,0 +1,64 @@
+#!/bin/bash
+
+function echo_yellow() {
+    echo -e "\033[1;33m$1\033[0m"
+}
+
+function ask_yes_or_no() {
+    read -p "$1 ([y]es or [N]o): "
+    case $(echo $REPLY | tr '[A-Z]' '[a-z]') in
+        y|yes) echo "yes" ;;
+        *)     echo "no"  ;;
+    esac
+}
+
+function check_cmd() {
+    command -v "$1" > /dev/null 2>&1
+}
+
+function apt_install() {
+    if ! dpkg -l "$1" > /dev/null 2>&1; then
+        echo_yellow "  Installing $1"
+        sudo apt install -y "$1"
+    else
+        echo_yellow "  $1 is already installed"
+    fi
+}
+
+function cargo_install() {
+    if ! cargo install --list | grep "$1" > /dev/null 2>&1; then
+        echo_yellow "  Installing $1"
+        cargo install "$1"
+    else
+        echo_yellow "  $1 is already installed"
+    fi
+}
+
+echo_yellow "Updating the yadm repo origin URL"
+yadm remote set-url origin "git@github.com:piotrek-szczygiel/dotfiles-wsl.git"
+
+DIST=$(lsb_release -d | awk -F"\t" '{print $2}')
+if [[ $DIST == Ubuntu* ]]; then
+    if [[ "yes" == $(ask_yes_or_no "Do you want to install applications?") ]]; then
+        echo_yellow "Installing applications"
+        apt_install build-essential
+        apt_install libclang-dev
+        apt_install libssl-dev
+        apt_install neovim
+        apt_install fish
+
+        source $HOME/.cargo/env 2> /dev/null
+
+        if ! check_cmd "cargo"; then
+            echo_yellow "Installing Rust"
+            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        fi
+
+        echo_yellow "Installing cargo applications"
+        cargo_install bat
+        cargo_install exa
+        cargo_install fd-find
+        cargo_install ripgrep
+        cargo_install starship
+    fi
+fi
