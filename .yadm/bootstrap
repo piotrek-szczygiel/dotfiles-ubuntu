@@ -41,15 +41,23 @@ DIST=$(lsb_release -d | awk -F"\t" '{print $2}')
 if [[ $DIST == Ubuntu* ]]; then
     if [[ "yes" == $(ask_yes_or_no "Do you want to install applications?") ]]; then
         echo_yellow "Installing applications"
+        sudo apt-add-repository -y ppa:fish-shell/release-3
+        sudo apt-get update -y
+
         apt_install build-essential
+        apt_install fzy
         apt_install libclang-dev
         apt_install libssl-dev
         apt_install neovim
         apt_install fish
+        apt_install xclip
 
         if check_cmd "fish"; then
             chsh -s $(which fish)
         fi
+
+        mkdir -p ~/.local/bin
+        mkdir -p ~/.cargo/bin
 
         source $HOME/.cargo/env 2> /dev/null
 
