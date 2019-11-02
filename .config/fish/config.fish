@@ -11,6 +11,8 @@ alias ls "exa"
 alias l "exa -lF --git"
 alias la "exa -laF --git"
 
+alias cat "bat"
+
 alias ga "git add"
 alias gc "git commit"
 alias gca "git commit -a"
