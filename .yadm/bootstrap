@@ -74,12 +74,19 @@ if [[ $DIST == Ubuntu* ]]; then
         fi
 
         if check_cmd "fish"; then
-            if [[ $SHELL != "fish" ]]; then
+            if [[ $SHELL != *fish ]]; then
                 echo_yellow "Changing default shell to fish"
                 chsh -s $(which fish)
             else
                 echo_yellow "Fish is already the default shell"
             fi
+        fi
+
+        if [ ! -d "~/.local/kitty.app" ]; then
+            echo_yellow "Installing kitty"
+
+            apt_install libharfbuzz-bin libcanberra-dev python3-pygments
+            curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
         fi
 
         mkdir -p ~/.local/bin

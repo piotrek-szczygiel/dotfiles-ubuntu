@@ -1,7 +1,9 @@
-set -xg PATH ~/.local/bin ~/.cargo/bin $PATH
+set -xg PATH ~/.local/bin ~/.cargo/bin ~/.local/kitty.app/bin $PATH
 
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+
+set -gx DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 
 alias vi "nvim"
 alias vim "nvim"
