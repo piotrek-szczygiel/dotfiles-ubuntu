@@ -24,8 +24,7 @@ alias gp "git push"
 alias grh "git reset HEAD"
 alias gs "git status"
 
-alias yc "yadm commit -am update"
-alias yp "yadm push"
+alias update "yadm commit -am update; and yadm push"
 
 set fish_greeting
 starship init fish | source
