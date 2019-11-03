@@ -1,117 +1,59 @@
 #!/bin/bash
 
+if [ ! -f "/etc/arch-release" ]; then
+    echo "This script only works on Arch Linux" 1>&2
+    exit 1
+fi
+
 set -e
 
 function echo_yellow() {
     echo -e "\033[1;33m$1\033[0m"
 }
 
-function ask_yes_or_no() {
-    read -p "$1 ([y]es or [N]o): "
-    case $(echo $REPLY | tr '[A-Z]' '[a-z]') in
-        y|yes) echo "yes" ;;
-        *)     echo "no"  ;;
-    esac
+function pacman_install() {
+    echo_yellow "Installing $1"
+    sudo pacman -Sq --noconfirm "$1"
 }
 
-function check_cmd() {
-    command -v "$1" > /dev/null 2>&1
-}
-
-function apt_install() {
-    if ! dpkg -l "$1" > /dev/null 2>&1; then
-        echo_yellow "  Installing $1"
-        sudo apt install -y "$1"
-    else
-        echo_yellow "  $1 is already installed"
-    fi
-}
-
-function cargo_install() {
-    if ! cargo install --list | grep "$1" > /dev/null 2>&1; then
-        echo_yellow "  Installing $1"
-        cargo install "$1"
-    else
-        echo_yellow "  $1 is already installed"
-    fi
+function yay_install() {
+    echo_yellow "Installing $1"
+    sudo yay -Sq --noconfirm "$1"
 }
 
 echo_yellow "Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:piotrek-szczygiel/dotfiles-wsl.git"
 
-DIST=$(lsb_release -d | awk -F"\t" '{print $2}')
-if [[ $DIST == Ubuntu* ]]; then
-    if [[ "yes" == $(ask_yes_or_no "Do you want to install applications?") ]]; then
-        echo_yellow "Installing applications"
+echo_yellow "Enabling colored output"
+sudo sed -i '/Color/s/^#//' /etc/pacman.conf
 
-        apt_install build-essential
-        apt_install fontconfig
-        apt_install fzy
-        apt_install libclang-dev
-        apt_install libssl-dev
-        apt_install python-pip
-        apt_install python3-pip
+echo_yellow "Removing fakeroot-tcp"
+sudo pacman -Rnsq --noconfirm fakeroot-tcp
 
-        if ! check_cmd "fish"; then
-            sudo apt-add-repository -y ppa:fish-shell/release-3
-            sudo apt-get update -y
-            apt_install fish
-        else
-            echo_yellow "  fish is already installed"
-        fi
+echo_yellow "Updating system"
+sudo pacman -Syuq --noconfirm
 
-        if ! check_cmd "nvim"; then
-            sudo add-apt-repository -y ppa:neovim-ppa/unstable
-            sudo apt-get update -y
-            apt_install neovim
-        else
-            echo_yellow "  neovim is already installed"
-        fi
+yay_install bat
+yay_install exa
+yay_install fd
+yay_install fish
+yay_install fontconfig
+yay_install kitty
+yay_install neovim
+yay_install python-pynvim
+yay_install ripgrep
+yay_install starship-bin
 
-        if check_cmd "pip" && check_cmd "pip3"; then
-            echo_yellow "Installing python neovim packages"
-            pip install --upgrade --user neovim > /dev/null
-            pip3 install --upgrade --user neovim > /dev/null
-        fi
+echo_yellow "Installing neovim plugins"
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 
-        if check_cmd "fish"; then
-            if [[ $SHELL != *fish ]]; then
-                echo_yellow "Changing default shell to fish"
-                chsh -s $(which fish)
-            else
-                echo_yellow "Fish is already the default shell"
-            fi
-        fi
-
-        if check_cmd "nvim"; then
-            echo_yellow "Installing neovim plugins"
-
-            curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-                https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-            nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
-        fi
-
-        if [ ! -f "$HOME/.local/kitty.app/bin/kitty" ]; then
-            echo_yellow "Installing kitty"
-
-            apt_install libharfbuzz-bin libcanberra0 libxcb-xkb1 python3-pygments
-            curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-
-            echo_yellow "Adding windows fonts"
-            sudo tee /etc/fonts/local.conf > /dev/null <<EOF
+echo_yellow "Adding Windows fonts"
+sudo tee /etc/fonts/local.conf > /dev/null <<EOF
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
     <dir>/mnt/c/Windows/Fonts</dir>
 </fontconfig>
 EOF
-        fi
-
-        mkdir -p ~/.local/bin
-
-	if ! check_cmd "starship"; then
-            echo_yellow "Make sure to synchronize MEGA on your Windows"
-        fi
-    fi
-fi
