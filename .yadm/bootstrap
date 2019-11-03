@@ -45,7 +45,7 @@ if [[ $DIST == Ubuntu* ]]; then
         echo_yellow "Installing applications"
 
         apt_install build-essential
-        apt_instasll font-config
+        apt_install fontconfig
         apt_install fzy
         apt_install libclang-dev
         apt_install libssl-dev
@@ -83,10 +83,19 @@ if [[ $DIST == Ubuntu* ]]; then
             fi
         fi
 
-        if [ ! -d "~/.local/kitty.app" ]; then
+        if check_cmd "nvim"; then
+            echo_yellow "Installing neovim plugins"
+
+            curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+                https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+            nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+        fi
+
+        if [ ! -f "$HOME/.local/kitty.app/bin/kitty" ]; then
             echo_yellow "Installing kitty"
 
-            apt_install libharfbuzz-bin libcanberra-dev python3-pygments
+            apt_install libharfbuzz-bin libcanberra0 libxcb-xkb1 python3-pygments
             curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
             echo_yellow "Adding windows fonts"
@@ -100,20 +109,9 @@ EOF
         fi
 
         mkdir -p ~/.local/bin
-        mkdir -p ~/.cargo/bin
 
-        source $HOME/.cargo/env 2> /dev/null
-
-        if ! check_cmd "cargo"; then
-            echo_yellow "Installing Rust"
-            curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+	if ! check_cmd "starship"; then
+            echo_yellow "Make sure to synchronize MEGA on your Windows"
         fi
-
-        echo_yellow "Installing cargo applications"
-        cargo_install bat
-        cargo_install exa
-        cargo_install fd-find
-        cargo_install ripgrep
-        cargo_install starship
     fi
 fi
