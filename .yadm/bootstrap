@@ -18,7 +18,7 @@ function pacman_install() {
 
 function yay_install() {
     echo_yellow "Installing $1"
-    sudo yay -Sq --noconfirm "$1"
+    yay -Sq --noconfirm "$1"
 }
 
 echo_yellow "Updating the yadm repo origin URL"
