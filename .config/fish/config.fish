@@ -1,5 +1,3 @@
-set -xg PATH ~/.local/bin ~/.cargo/bin ~/.local/kitty.app/bin /mnt/c/Users/piotr/Documents/MEGA/wsl $PATH
-
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
