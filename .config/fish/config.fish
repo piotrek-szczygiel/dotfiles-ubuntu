@@ -3,6 +3,8 @@ set -gx VISUAL nvim
 
 set -gx DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 
+alias e "explorer.exe"
+
 alias vi "nvim"
 alias vim "nvim"
 alias svi "sudo -E nvim"
