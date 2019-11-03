@@ -28,7 +28,7 @@ echo_yellow "Enabling colored output"
 sudo sed -i '/Color/s/^#//' /etc/pacman.conf
 
 echo_yellow "Removing fakeroot-tcp"
-sudo pacman -Rns --noconfirm fakeroot-tcp
+sudo pacman -Rns --noconfirm fakeroot-tcp || true
 
 echo_yellow "Updating system"
 sudo pacman -Syuq --noconfirm
