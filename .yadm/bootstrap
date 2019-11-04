@@ -24,15 +24,6 @@ function yay_install() {
 echo_yellow "Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:piotrek-szczygiel/dotfiles-wsl.git"
 
-echo_yellow "Enabling colored output"
-sudo sed -i '/Color/s/^#//' /etc/pacman.conf
-
-echo_yellow "Removing fakeroot-tcp"
-sudo pacman -Rns --noconfirm fakeroot-tcp || true
-
-echo_yellow "Updating system"
-sudo pacman -Syuq --noconfirm
-
 yay_install bat
 yay_install diff-so-fancy
 yay_install exa
@@ -59,3 +50,10 @@ sudo tee /etc/fonts/local.conf > /dev/null <<EOF
     <dir>/mnt/c/Windows/Fonts</dir>
 </fontconfig>
 EOF
+
+echo_yellow "Changing shell to fish"
+chsh -s /usr/bin/fish
+
+echo_yellow "Installing fish plugins"
+fish -c fisher
+
