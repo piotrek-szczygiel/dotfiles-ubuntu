@@ -34,6 +34,7 @@ echo_yellow "Updating system"
 sudo pacman -Syuq --noconfirm
 
 yay_install bat
+yay_install diff-so-fancy
 yay_install exa
 yay_install fd
 yay_install fish
