@@ -1,26 +1,34 @@
 [user]
-	email = szczygiel.p@gmail.com
-	name = Piotr Szczygieł
+    email = szczygiel.p@gmail.com
+    name = Piotr Szczygieł
 [apply]
     whitespace = warn
 [core]
-	editor = nvim
-	autocrlf = input
+    editor = nvim
+    autocrlf = input
     excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
     whitespace = space-before-tab,tab-in-indent,trailing-space,tabwidth=4
     untrackedCache = true
+    pager = diff-so-fancy | less --tabs=4 -RFX
 [color]
-    ui = auto
+    ui = true
 [color "branch"]
     current = yellow reverse
     local = yellow
     remote = green
 [color "diff"]
-    meta = yellow bold
+    meta = 11
     frag = magenta bold
     old = red bold
     new = green bold
+    commit = yellow bold
+    whitespace = red reverse
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
 [color "status"]
     added = yellow
     changed = green
@@ -44,3 +52,4 @@
     default = simple
 [credential]
     helper = manager
+
