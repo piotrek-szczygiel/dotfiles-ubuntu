@@ -16,5 +16,5 @@
 Execute this command from your user shell
 
 ```bash
-curl http://raw.github.com/piotrek-szczygiel/dotfiles-wsl/master/wsl.sh | sh
+curl -s https://raw.githubusercontent.com/piotrek-szczygiel/dotfiles-wsl/master/wsl.sh | sh
 ```
