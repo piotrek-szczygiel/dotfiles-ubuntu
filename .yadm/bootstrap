@@ -54,3 +54,6 @@ EOF
 echo_yellow "Installing fish plugins"
 fish -c fisher
 
+echo_yellow "Everything done"
+echo_yellow "Issue 'chsh -s /usr/bin/fish' to change your shell"
+

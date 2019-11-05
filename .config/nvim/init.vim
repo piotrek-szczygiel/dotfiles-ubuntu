@@ -55,8 +55,8 @@ nnoremap <silent> <TAB> :b#<CR>
 vnoremap < <gv
 vnoremap > >gv
 
-nnoremap <silent> <leader>y "+y<CR>
-nnoremap <silent> <leader>p "+p<CR>
+vnoremap <silent> <leader>y "+y<CR>
+vnoremap <silent> <leader>p "+p<CR>
 
 noremap <silent> <C-\> :vsp<CR>
 
