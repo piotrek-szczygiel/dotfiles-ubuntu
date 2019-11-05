@@ -1,3 +1,6 @@
+set -gx PATH ~/.local/bin $PATH
+set -gx LD_LIBRARY_PATH /usr/local/lib
+
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
