@@ -51,9 +51,9 @@ sudo tee /etc/fonts/local.conf > /dev/null <<EOF
 </fontconfig>
 EOF
 
-echo_yellow "Changing shell to fish"
-chsh -s /usr/bin/fish
-
 echo_yellow "Installing fish plugins"
 fish -c fisher
+
+echo_yellow "Everything done"
+echo_yellow "Issue 'chsh -s /usr/bin/fish' to change your shell"
 
