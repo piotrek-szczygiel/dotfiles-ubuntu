@@ -7,21 +7,16 @@ fi
 
 set -e
 
-function echo_yellow() {
+function log() {
     echo -e "\033[1;33m$1\033[0m"
 }
 
-function pacman_install() {
-    echo_yellow "Installing $1"
-    sudo pacman -Sq --noconfirm "$1"
-}
-
 function yay_install() {
-    echo_yellow "Installing $1"
+    log "Installing $1"
     yay -Sq --noconfirm "$1"
 }
 
-echo_yellow "Updating the yadm repo origin URL"
+log "Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:piotrek-szczygiel/dotfiles-wsl.git"
 
 yay_install bat
@@ -37,12 +32,12 @@ yay_install ripgrep
 yay_install starship-bin
 yay_install xfce4-terminal
 
-echo_yellow "Installing neovim plugins"
+log "Installing neovim plugins"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 
-echo_yellow "Adding Windows fonts"
+log "Adding Windows fonts"
 sudo tee /etc/fonts/local.conf > /dev/null <<EOF
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
@@ -51,8 +46,8 @@ sudo tee /etc/fonts/local.conf > /dev/null <<EOF
 </fontconfig>
 EOF
 
-echo_yellow "Installing fish plugins"
+log "Installing fish plugins"
 fish -c fisher
 
-echo_yellow "Done!"
+log "Done!"
 

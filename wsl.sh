@@ -7,31 +7,21 @@ fi
 
 set -e
 
-function echo_yellow() {
+function log() {
     echo -e "\033[1;33m$1\033[0m"
 }
 
-function pacman_install() {
-    echo_yellow "Installing $1"
-    sudo pacman -Sq --noconfirm "$1"
-}
-
-function yay_install() {
-    echo_yellow "Installing $1"
-    yay -Sq --noconfirm "$1"
-}
-
-echo_yellow "Enabling colored output"
+log "Enabling colored output"
 sudo sed -i '/Color/s/^#//' /etc/pacman.conf
 
-echo_yellow "Removing fakeroot-tcp"
-sudo pacman -Rns --noconfirm fakeroot-tcp || true
+# log "Removing fakeroot-tcp"
+# sudo pacman -Rns --noconfirm fakeroot-tcp || true
 
-echo_yellow "Updating system"
+log "Updating system"
 sudo pacman -Syuq --noconfirm
 
-pacman_install base-devel
-pacman_install git
+sudo pacman -Sq --noconfirm git
+sudo pacman -Sq base-devel
 
 pushd /tmp
 git clone https://aur.archlinux.org/yay.git
@@ -40,7 +30,7 @@ makepkg -si --noconfirm
 popd
 popd
 
-yay_install yadm
+yay install -Sq --noconfirm yadm
 
 yadm clone https://github.com/piotrek-szczygiel/dotfiles-wsl
 
