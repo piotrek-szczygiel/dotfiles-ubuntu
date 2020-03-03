@@ -20,27 +20,21 @@ let g:seiya_auto_enable = 1
 set termguicolors
 colorscheme monokai_pro
 
+set colorcolumn=120
+set expandtab
+set guicursor=
+set hidden
+set ignorecase
+set mouse=a
 set number
 set scrolloff=5
-
-set hidden
-
-set shiftwidth=4
-set tabstop=4
-set expandtab
 set shiftround
-
-set ignorecase
+set shiftwidth=4
 set smartcase
-
 set splitbelow
 set splitright
-
+set tabstop=4
 set wildmode=longest,list,full
-
-set mouse=a
-
-set colorcolumn=120
 
 let mapleader = " "
 
