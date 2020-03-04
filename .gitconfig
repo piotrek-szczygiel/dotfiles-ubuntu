@@ -13,4 +13,10 @@
     pushInsteadOf = "git://github.com/"
 [push]
     default = simple
+[diff]
+    tool = neovim
+[difftool]
+    prompt = false
+[difftool "neovim"]
+    cmd = nvim -d $REMOTE $LOCAL
 
