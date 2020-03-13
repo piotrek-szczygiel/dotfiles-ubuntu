@@ -20,17 +20,21 @@ sudo sed -i '/Color/s/^#//' /etc/pacman.conf
 log "Updating system"
 sudo pacman -Syuq --noconfirm
 
-sudo pacman -Sq --noconfirm git
-sudo pacman -Sq base-devel
+sudo pacman -Sq --noconfirm --needed git
+sudo pacman -Sq --needed base-devel
 
-pushd /tmp
-git clone https://aur.archlinux.org/yay.git
-pushd yay
-makepkg -si --noconfirm
-popd
-popd
+if ! [ -x "$(command -v yay)" ]; then
+    log "Installing yay"
+    pushd /tmp
+    rm -rf yay
+    git clone https://aur.archlinux.org/yay.git
+    pushd yay
+    makepkg -si --noconfirm
+    popd
+    popd
+fi
 
-yay install -Sq --noconfirm yadm
+yay -Sq --noconfirm --needed yadm
 
 yadm clone https://github.com/piotrek-szczygiel/dotfiles-wsl
 
