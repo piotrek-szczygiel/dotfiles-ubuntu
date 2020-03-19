@@ -27,10 +27,10 @@ yay_install fish
 yay_install fontconfig
 yay_install neovim
 yay_install openssh
+yay_install pfetch
 yay_install python-pynvim
 yay_install ripgrep
 yay_install starship-bin
-yay_install xfce4-terminal
 
 log "Installing neovim plugins"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
