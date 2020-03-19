@@ -21,7 +21,6 @@ log "Updating system"
 sudo pacman -Syuq --noconfirm
 
 sudo pacman -Sq --noconfirm --needed git
-sudo pacman -Sq --needed base-devel
 
 if ! [ -x "$(command -v yay)" ]; then
     log "Installing yay"
