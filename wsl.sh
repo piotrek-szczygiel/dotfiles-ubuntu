@@ -37,4 +37,3 @@ fi
 yay -Sq --noconfirm --needed yadm
 
 yadm clone https://github.com/piotrek-szczygiel/dotfiles-wsl
-
