@@ -25,6 +25,7 @@ yay_install exa
 yay_install fd
 yay_install fish
 yay_install fontconfig
+yay_install fzy
 yay_install neovim
 yay_install openssh
 yay_install pfetch
