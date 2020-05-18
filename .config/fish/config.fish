@@ -32,4 +32,3 @@ alias gs "git status"
 alias update "yadm commit -am update; and yadm push"
 
 set fish_greeting
-starship init fish | source

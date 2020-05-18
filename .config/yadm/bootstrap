@@ -31,7 +31,6 @@ yay_install openssh
 yay_install pfetch
 yay_install python-pynvim
 yay_install ripgrep
-yay_install starship-bin
 
 log "Installing neovim plugins"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
