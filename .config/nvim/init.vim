@@ -22,7 +22,6 @@ colorscheme monokai_pro
 
 set colorcolumn=120
 set expandtab
-set guicursor=
 set hidden
 set ignorecase
 set mouse=a
