@@ -2,16 +2,24 @@
 
 ## Setup
 
-- `wsl.exe --set-default-version 2`
+```
+wsl --set-default-version 2
+scoop install archwsl
+scoop hold archwsl
+arch
 
-- Download [ArchWSL](https://github.com/yuk7/ArchWSL/releases/latest/download/Arch.zip)
+[root]# passwd
+[root]# EDITOR=vim visudo
+    %wheel      ALL=(ALL) ALL
 
-- Follow the [setup tutorial](https://github.com/yuk7/ArchWSL/wiki/How-to-Setup)
+[root]# useradd -m -G wheel -s /bin/bash wsl
+[root]# passwd wsl
+[root]# exit
 
-## Installation
+arch config --default-user wsl
+arch
 
-Execute this command from the WSL
-
-```bash
-curl -s https://raw.githubusercontent.com/piotrek-szczygiel/dotfiles-wsl/master/wsl.sh | sh
+[wsl]$ sudo pacman-key --init
+[wsl]$ sudo pacman-key --populate
+[wsl]$ curl -s https://raw.githubusercontent.com/piotrek-szczygiel/dotfiles-wsl/master/wsl.sh | sh
 ```

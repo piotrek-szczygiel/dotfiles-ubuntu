@@ -14,13 +14,13 @@ function log() {
 log "Enabling colored output"
 sudo sed -i '/Color/s/^#//' /etc/pacman.conf
 
-# log "Removing fakeroot-tcp"
-# sudo pacman -Rns --noconfirm fakeroot-tcp || true
+log "Removing fakeroot-tcp"
+sudo pacman -Rns --noconfirm fakeroot-tcp || true
 
 log "Updating system"
 sudo pacman -Syuq --noconfirm
 
-sudo pacman -Sq --noconfirm --needed git
+sudo pacman -Sq --noconfirm --needed base-devel git
 
 if ! [ -x "$(command -v yay)" ]; then
     log "Installing yay"
