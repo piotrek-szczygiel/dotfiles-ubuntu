@@ -4,8 +4,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
+Plug 'cloudhead/neovim-fuzzy'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'miyakogi/seiya.vim'
 Plug 'phanviet/vim-monokai-pro'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
@@ -13,9 +13,6 @@ Plug 'vimlab/split-term.vim'
 Plug 'Yggdroot/indentLine'
 
 call plug#end()
-
-let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
-"let g:seiya_auto_enable = 1
 
 set termguicolors
 colorscheme monokai_pro
@@ -54,3 +51,6 @@ vnoremap <silent> <leader>p "+p<CR>
 noremap <silent> <C-\> :vsp<CR>
 
 nnoremap <silent> <leader>' :Term<CR>
+
+nnoremap <silent> <C-p> :FuzzyOpen<CR>
+nnoremap <silent> <C-f> :FuzzyGrep<CR>

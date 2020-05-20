@@ -12,8 +12,9 @@ alias vi "nvim"
 alias vim "nvim"
 alias svi "sudo -E nvim"
 
+alias l "exa"
 alias ls "exa"
-alias l "exa -lF --git"
+alias ll "exa -lF --git"
 alias la "exa -laF --git"
 
 alias cat "bat"
@@ -32,3 +33,4 @@ alias gs "git status"
 alias update "yadm commit -am update; and yadm push"
 
 set fish_greeting
+
