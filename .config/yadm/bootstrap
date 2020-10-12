@@ -26,11 +26,9 @@ yay_install fd
 yay_install fish
 yay_install fontconfig
 yay_install fzy
-yay_install lazygit
 yay_install mesa-demos
 yay_install neovim
 yay_install openssh
-yay_install pfetch
 yay_install python-pynvim
 yay_install ripgrep
 yay_install xfce4-terminal
