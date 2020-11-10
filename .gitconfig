@@ -17,3 +17,4 @@
     path = ~/.gitconfig-ibm
 [pull]
 	rebase = true
+	ff = only
