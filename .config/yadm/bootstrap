@@ -35,7 +35,7 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 
 log "Installing fish plugins"
-fish -c fisher
+fish -c fisher update
 
 log "Done!"
 log "Issue 'chsh -s /usr/bin/fish' to change your shell to fish"
