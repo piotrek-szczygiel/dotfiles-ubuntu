@@ -33,10 +33,9 @@ wget -q -O /tmp/delta.deb $(curl -s https://api.github.com/repos/dandavison/delt
     | jq --raw-output '.assets[] | select(.name | endswith("amd64.deb")).browser_download_url' | tail -n 1)
 sudo dpkg -i /tmp/delta.deb
 
-log "Issuing 'chsh -s /usr/bin/fish' to change your shell to fish"
-chsh -s /usr/bin/fish
-
 log "Installing neovim plugins"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+
+log "Issue 'chsh -s /usr/bin/fish' to change your shell to fish"
