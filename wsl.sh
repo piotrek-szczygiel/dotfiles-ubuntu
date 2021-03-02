@@ -8,15 +8,14 @@ function log() {
 
 log "Updating system"
 sudo sed --in-place 's/focal/groovy/g' /etc/apt/sources.list
-sudo add-apt-repository -y ppa:aos1/diff-so-fancy
 sudo apt update
 sudo apt upgrade
 
 sudo apt install -y bat
-sudo apt install -y diff-so-fancy
 sudo apt install -y exa
 sudo apt install -y fd-find
 sudo apt install -y fish
+sudo apt install -y jq
 sudo apt install -y neovim
 sudo apt install -y python3-pynvim
 sudo apt install -y ripgrep
@@ -38,3 +37,8 @@ fish -c fisher update
 log "Done!"
 log "Issuing 'chsh -s /usr/bin/fish' to change your shell to fish"
 chsh -s /usr/bin/fish
+
+log "Installing git-delta (might fail)"
+wget -q -O /tmp/delta.deb $(curl -s https://api.github.com/repos/dandavison/delta/releases/latest \
+    | jq --raw-output '.assets[] | select(.name | endswith("amd64.deb")).browser_download_url' | tail -n 1)
+sudo dpkg -i /tmp/delta.deb
