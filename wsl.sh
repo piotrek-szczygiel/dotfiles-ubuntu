@@ -21,17 +21,18 @@ sudo apt install -y \
     gnupg-agent \
     jq \
     neovim \
+    python3 \
     python3-pip \
     python3-pynvim \
     ripgrep \
     software-properties-common
 
-log "Installing docker"
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-sudo apt update -y
-sudo apt install -y docker-ce
-sudo usermod -aG docker $USER
+# log "Installing docker"
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# sudo apt update -y
+# sudo apt install -y docker-ce
+# sudo usermod -aG docker $USER
 
 sudo apt install -y yadm
 yadm clone https://github.com/piotrek-szczygiel/dotfiles-wsl
