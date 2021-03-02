@@ -7,17 +7,31 @@ function log() {
 }
 
 log "Updating system"
-sudo apt update
-sudo apt upgrade
+sudo apt update -y
+sudo apt upgrade -y
 
-sudo apt install -y bat
-sudo apt install -y exa
-sudo apt install -y fd-find
-sudo apt install -y fish
-sudo apt install -y jq
-sudo apt install -y neovim
-sudo apt install -y python3-pynvim
-sudo apt install -y ripgrep
+sudo apt install -y \
+    apt-transport-https \
+    bat \
+    ca-certificates \
+    curl \
+    exa \
+    fd-find \
+    fish \
+    gnupg-agent \
+    jq \
+    neovim \
+    python3-pip \
+    python3-pynvim \
+    ripgrep \
+    software-properties-common
+
+log "Installing docker"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt update -y
+sudo apt install -y docker-ce
+sudo usermod -aG docker $USER
 
 sudo apt install -y yadm
 yadm clone https://github.com/piotrek-szczygiel/dotfiles-wsl
@@ -39,3 +53,4 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
 
 log "Issue 'chsh -s /usr/bin/fish' to change your shell to fish"
+log "Start docker with 'sudo service docker start'"
