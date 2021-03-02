@@ -13,8 +13,6 @@
     pushInsteadOf = "git://github.com/"
 [push]
     default = simple
-[includeIf "gitdir:~/ibm/"]
-    path = ~/.gitconfig-ibm
 [pull]
 	rebase = true
 	ff = only
