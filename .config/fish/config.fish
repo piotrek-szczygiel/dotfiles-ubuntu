@@ -17,7 +17,7 @@ alias ls "exa"
 alias ll "exa -lF --git"
 alias la "exa -laF --git"
 
-alias cat "bat"
+alias cat "batcat"
 
 alias ga "git add"
 alias gc "git commit"
@@ -32,4 +32,3 @@ alias gs "git status"
 
 alias update "yadm commit -am update; and yadm push"
 
-set fish_greeting
