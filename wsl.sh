@@ -38,9 +38,18 @@ wget -q -O /tmp/delta.deb $(curl -s https://api.github.com/repos/dandavison/delt
     | jq --raw-output '.assets[] | select(.name | endswith("amd64.deb")).browser_download_url' | tail -n 1)
 sudo dpkg -i /tmp/delta.deb
 
+log "Adding Windows fonts"
+sudo tee /etc/fonts/local.conf > /dev/null <<EOF
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+    <dir>/mnt/c/Windows/Fonts</dir>
+</fontconfig>
+EOF
+
 log "Installing neovim plugins"
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim '+PlugUpdate' '+PlugClean!' '+PlugUpdate' '+qall'
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+nvim +PlugInstall +qall
 
 log "Issue 'chsh -s /usr/bin/fish' to change your shell to fish"
