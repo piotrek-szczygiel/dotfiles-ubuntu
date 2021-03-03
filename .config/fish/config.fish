@@ -34,4 +34,6 @@ alias gs "git status"
 alias update "yadm commit -am update; and yadm push"
 
 set fish_greeting
+eval (keychain --eval --agents ssh id_ed25519)
+starship init fish | source
 

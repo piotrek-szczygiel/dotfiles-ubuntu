@@ -18,6 +18,7 @@ sudo apt install -y \
     fd-find \
     fish \
     jq \
+    keychain \
     neovim \
     python3 \
     python3-pip \
@@ -29,6 +30,9 @@ yadm clone https://github.com/piotrek-szczygiel/dotfiles-wsl
 
 log "Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:piotrek-szczygiel/dotfiles-wsl.git"
+
+log "Installing fish prompt"
+curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
 
 log "Installing fish plugins"
 fish -c fisher update
