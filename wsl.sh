@@ -7,6 +7,7 @@ function log() {
 }
 
 log "Updating system"
+sudo apt-add-repository -y ppa:fish-shell/release-3
 sudo apt update -y
 sudo apt upgrade -y
 
