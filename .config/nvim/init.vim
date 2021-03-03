@@ -1,5 +1,3 @@
-source $VIMRUNTIME/mswin.vim
-
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'airblade/vim-gitgutter'
