@@ -33,6 +33,11 @@ alias gs "git status"
 
 alias update "yadm commit -am update; and yadm push"
 
+set sshd_status (service ssh status)
+if string match -q -- "*is not running*" $sshd_status
+  sudo service ssh --full-restart
+end
+
 set fish_greeting
 eval (keychain --eval --agents ssh id_ed25519)
 starship init fish | source
