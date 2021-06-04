@@ -49,7 +49,7 @@ log "Installing fish prompt"
 curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
 
 log "Installing fish plugins"
-fish -c "fisher update" < /dev/null
+fish -c "fisher update"
 
 log "Installing git-delta"
 wget -q -O /tmp/delta.deb $(curl -s https://api.github.com/repos/dandavison/delta/releases/latest \

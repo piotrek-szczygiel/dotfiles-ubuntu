@@ -15,5 +15,5 @@ $ sudo apt upgrade
  - Install my configuration
 
 ```
-$ curl -s https://raw.githubusercontent.com/piotrek-szczygiel/dotfiles-wsl/master/wsl.sh | bash
+$ bash <(curl -s https://raw.githubusercontent.com/piotrek-szczygiel/dotfiles-wsl/master/wsl.sh)
 ```
