@@ -35,6 +35,7 @@ sudo apt install -y \
     python3-pip \
     python3-pynvim \
     ripgrep \
+    unzip \
     valgrind
 
 sudo apt install -y yadm
@@ -47,7 +48,7 @@ log "Installing fish prompt"
 curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
 
 log "Installing fish plugins"
-fish -c fisher update
+fish -c "fisher update"
 
 log "Installing git-delta"
 wget -q -O /tmp/delta.deb $(curl -s https://api.github.com/repos/dandavison/delta/releases/latest \
