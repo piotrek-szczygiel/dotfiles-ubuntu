@@ -39,6 +39,6 @@ if string match -q -- "*is not running*" $sshd_status
 end
 
 set fish_greeting
-eval (keychain --eval --agents ssh id_ed25519)
+# eval (keychain --eval --agents ssh id_ed25519)
 starship init fish | source
 
