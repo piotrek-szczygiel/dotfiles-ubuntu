@@ -38,7 +38,8 @@ if string match -q -- "*is not running*" $sshd_status
   sudo service ssh --full-restart
 end
 
-set fish_greeting
-# eval (keychain --eval --agents ssh id_ed25519)
-starship init fish | source
+set -x SSH_AUTH_SOCK $HOME/.ssh/agent.sock
+ssh-agent-relay.sh
 
+set fish_greeting
+starship init fish | source

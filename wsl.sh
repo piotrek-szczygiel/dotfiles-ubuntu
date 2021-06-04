@@ -28,13 +28,13 @@ sudo apt install -y \
     gcc \
     gdb \
     jq \
-    keychain \
     neovim \
     openssh-server \
     python3 \
     python3-pip \
     python3-pynvim \
     ripgrep \
+    socat \
     unzip \
     valgrind
 
