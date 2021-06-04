@@ -55,15 +55,6 @@ wget -q -O /tmp/delta.deb $(curl -s https://api.github.com/repos/dandavison/delt
     | jq --raw-output '.assets[] | select(.name | endswith("amd64.deb")).browser_download_url' | tail -n 1)
 sudo dpkg -i /tmp/delta.deb
 
-log "Adding Windows fonts"
-sudo tee /etc/fonts/local.conf > /dev/null <<EOF
-<?xml version="1.0"?>
-<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-<fontconfig>
-    <dir>/mnt/c/Windows/Fonts</dir>
-</fontconfig>
-EOF
-
 log "Configuring OpenSSH server"
 SSHD_FILE=/etc/ssh/sshd_config
 sudo cp $SSHD_FILE ${SSHD_FILE}.`date '+%Y-%m-%d_%H-%M-%S'`.back
