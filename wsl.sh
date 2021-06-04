@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 
 function log() {
     echo -e "\033[1;33m$1\033[0m"
@@ -39,7 +40,7 @@ sudo apt install -y \
     valgrind
 
 sudo apt install -y yadm
-yadm clone https://github.com/piotrek-szczygiel/dotfiles-wsl
+yadm clone -f https://github.com/piotrek-szczygiel/dotfiles-wsl
 
 log "Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:piotrek-szczygiel/dotfiles-wsl.git"
@@ -48,7 +49,7 @@ log "Installing fish prompt"
 curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
 
 log "Installing fish plugins"
-fish -c "fisher update"
+fish -c "fisher update" < /dev/null
 
 log "Installing git-delta"
 wget -q -O /tmp/delta.deb $(curl -s https://api.github.com/repos/dandavison/delta/releases/latest \
