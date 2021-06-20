@@ -6,9 +6,9 @@ function log() {
     echo -e "\033[1;33m$1\033[0m"
 }
 
-log "Installing NTP service"
-sudo apt install -y ntp
-sudo service ntp restart
+# log "Installing NTP service"
+# sudo apt install -y ntp
+# sudo service ntp restart
 
 log "Updating system"
 sudo apt-add-repository -y ppa:fish-shell/release-3
@@ -35,8 +35,7 @@ sudo apt install -y \
     python3-pynvim \
     ripgrep \
     socat \
-    unzip \
-    valgrind
+    unzip
 
 sudo apt install -y yadm
 yadm clone -f https://github.com/piotrek-szczygiel/dotfiles-wsl
