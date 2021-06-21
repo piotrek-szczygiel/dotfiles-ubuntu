@@ -12,10 +12,10 @@ function log() {
 
 log "Updating system"
 sudo apt-add-repository -y ppa:fish-shell/release-3
-sudo apt update -y
-sudo apt upgrade -y
+sudo apt-get update -y
+sudo apt-get upgrade -y
 
-sudo apt install -y \
+sudo apt-get install -y \
     bat \
     build-essential \
     clang \
@@ -37,7 +37,7 @@ sudo apt install -y \
     socat \
     unzip
 
-sudo apt install -y yadm
+sudo apt-get install -y yadm
 yadm clone -f https://github.com/piotrek-szczygiel/dotfiles-wsl
 
 log "Updating the yadm repo origin URL"
@@ -76,5 +76,8 @@ log "Installing neovim plugins"
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 nvim +PlugInstall +qall
+
+log "Removing unused packages"
+sudo apt-get autoremove -y
 
 log "Issue 'chsh -s /usr/bin/fish' to change your shell to fish"
