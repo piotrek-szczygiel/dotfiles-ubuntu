@@ -11,5 +11,5 @@ sudo sed --in-place 's/focal/groovy/g' /etc/apt/sources.list
 ## Bootstrap configuration
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/piotrek-szczygiel/dotfiles-wsl/master/wsl.sh)
+bash <(curl -s https://raw.githubusercontent.com/piotrek-szczygiel/dotfiles-ubuntu/master/bootstrap.sh)
 ```
