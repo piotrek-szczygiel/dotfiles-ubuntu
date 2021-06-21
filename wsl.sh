@@ -34,10 +34,10 @@ sudo apt-get install -y \
     unzip
 
 sudo apt-get install -y yadm
-yadm clone -f https://github.com/piotrek-szczygiel/dotfiles-wsl
+yadm clone -f https://github.com/piotrek-szczygiel/dotfiles-ubuntu
 
 log "Updating the yadm repo origin URL"
-yadm remote set-url origin "git@github.com:piotrek-szczygiel/dotfiles-wsl.git"
+yadm remote set-url origin "git@github.com:piotrek-szczygiel/dotfiles-ubuntu.git"
 
 log "Installing fish prompt"
 curl -fsSL https://starship.rs/install.sh | bash -s -- --yes

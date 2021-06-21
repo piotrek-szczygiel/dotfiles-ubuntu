@@ -12,13 +12,15 @@ Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
-if (has("autocmd") && !has("gui_running"))
+if (has('autocmd') && !has('gui_running'))
   augroup colorset
     autocmd!
-    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white })
+    let s:white = { 'gui': '#ABB2BF', 'cterm': '145', 'cterm16' : '7' }
+    autocmd ColorScheme * call onedark#set_highlight('Normal', { 'fg': s:white })
   augroup END
 endif
+
+let g:indentLine_fileTypeExclude = ['json', 'markdown']
 
 colorscheme onedark
 
@@ -37,7 +39,7 @@ set splitright
 set tabstop=4
 set wildmode=longest,list,full
 
-let mapleader = " "
+let mapleader = ' '
 
 nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
 nnoremap <silent> <leader>vr :source $MYVIMRC<CR>
