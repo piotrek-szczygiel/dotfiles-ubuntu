@@ -4,9 +4,6 @@ set -gx LD_LIBRARY_PATH /usr/local/lib
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
-set -gx DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-
-alias e "explorer.exe"
 
 alias vi "nvim"
 alias vim "nvim"
@@ -33,13 +30,18 @@ alias gs "git status"
 
 alias update "yadm commit -am update; and yadm push"
 
-set sshd_status (service ssh status)
-if string match -q -- "*is not running*" $sshd_status
-  sudo service ssh --full-restart
-end
+if grep -qEi "(Microsoft|WSL)" /proc/version
+    set -gx DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 
-set -x SSH_AUTH_SOCK $HOME/.ssh/agent.sock
-ssh-agent-relay.sh
+    alias e "explorer.exe"
+    set sshd_status (service ssh status)
+    if string match -q -- "*is not running*" $sshd_status
+    sudo service ssh --full-restart
+    end
+
+    set -x SSH_AUTH_SOCK $HOME/.ssh/agent.sock
+    ssh-agent-relay.sh
+end
 
 set fish_greeting
 starship init fish | source
