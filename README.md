@@ -1,6 +1,4 @@
-# WSL dotfiles
-
-Currently using Ubuntu as a distribution.
+# Ubuntu dotfiles
 
 ## (WSL) Update Ubuntu 20.04 to 20.10
 
