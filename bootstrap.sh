@@ -14,15 +14,11 @@ sudo apt-get upgrade -y
 sudo apt-get install -y \
     bat \
     build-essential \
-    clang \
-    cmake \
     curl \
     exa \
     fd-find \
     fish \
     fzy \
-    gcc \
-    gdb \
     jq \
     neovim \
     openssh-server \
