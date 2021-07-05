@@ -1,6 +1,6 @@
 # Ubuntu dotfiles
 
-## (WSL) Update Ubuntu 20.04 to 20.10
+## Update Ubuntu 20.04 to 20.10
 
 ```bash
 sudo sed --in-place 's/focal/groovy/g' /etc/apt/sources.list
