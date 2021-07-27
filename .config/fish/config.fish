@@ -36,7 +36,7 @@ if grep -qEi "(Microsoft|WSL)" /proc/version
     alias e "explorer.exe"
     set sshd_status (service ssh status)
     if string match -q -- "*is not running*" $sshd_status
-    sudo service ssh --full-restart
+        sudo service ssh --full-restart
     end
 
     set -x SSH_AUTH_SOCK $HOME/.ssh/agent.sock
