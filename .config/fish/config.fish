@@ -14,7 +14,7 @@ alias ls "exa"
 alias ll "exa -lF --git"
 alias la "exa -laF --git"
 
-alias cat "batcat"
+alias bat "batcat"
 alias fd "fdfind"
 
 alias ga "git add"
