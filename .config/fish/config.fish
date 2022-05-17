@@ -17,6 +17,8 @@ alias la "exa -laF --git"
 alias bat "batcat"
 alias fd "fdfind"
 
+alias tg "terragrunt"
+
 alias ga "git add"
 alias gc "git commit"
 alias gca "git commit -a"
