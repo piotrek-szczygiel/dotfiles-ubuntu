@@ -4,6 +4,7 @@ set -gx LD_LIBRARY_PATH /usr/local/lib
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 
+alias q "exit"
 
 alias vi "nvim"
 alias vim "nvim"
@@ -22,6 +23,7 @@ alias tg "terragrunt"
 alias ga "git add"
 alias gc "git commit"
 alias gca "git commit -a"
+alias gam "git commit --amend --no-edit"
 alias gco "git checkout --"
 alias gd "git diff"
 alias gl "git pull"
