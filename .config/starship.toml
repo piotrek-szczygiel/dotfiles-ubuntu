@@ -3,7 +3,6 @@ $username\
 $hostname\
 $directory\
 $git_branch\
-$aws\
 $cmd_duration\
 $line_break\
 $jobs\
