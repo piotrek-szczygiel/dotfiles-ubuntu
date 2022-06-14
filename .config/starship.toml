@@ -1,3 +1,14 @@
-[git_status]
-windows_starship = '/mnt/c/Users/pisz/scoop/shims/starship.exe'
-
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$aws\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$shell\
+$character"""
