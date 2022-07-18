@@ -15,6 +15,7 @@ sudo apt-get install -y \
     bat \
     build-essential \
     curl \
+    direnv \
     exa \
     fd-find \
     fish \
