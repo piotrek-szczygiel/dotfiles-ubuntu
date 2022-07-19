@@ -37,7 +37,7 @@ log "Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:piotrek-szczygiel/dotfiles-ubuntu.git"
 
 log "Installing fish prompt"
-curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
+curl -sS https://starship.rs/install.sh | sh -s -- --yes
 
 log "Installing fish plugins"
 fish -c "fisher update"
