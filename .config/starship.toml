@@ -3,10 +3,10 @@ $username\
 $hostname\
 $directory\
 $git_branch\
+$git_status\
 $cmd_duration\
 $line_break\
 $jobs\
-$battery\
 $time\
 $status\
 $shell\
