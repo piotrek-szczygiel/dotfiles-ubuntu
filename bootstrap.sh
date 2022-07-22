@@ -45,7 +45,7 @@ fish -c "fisher update"
 log "Installing git-delta"
 arch="$(dpkg --print-architecture)"
 wget -q -O /tmp/delta.deb $(curl -s https://api.github.com/repos/dandavison/delta/releases/latest \
-    | jq --raw-output '.assets[] | select(.name | endswith("$arch.deb")).browser_download_url' | tail -n 1)
+    | jq --raw-output ".assets[] | select(.name | endswith(\"$arch.deb\")).browser_download_url" | tail -n 1)
 sudo dpkg -i /tmp/delta.deb
 
 
