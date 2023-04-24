@@ -33,6 +33,9 @@ alias gp "git push"
 alias grh "git reset HEAD"
 alias gs "git status"
 
+alias pn "pnpm"
+alias px "pnpm exec"
+
 alias update "yadm commit -am update; and yadm push"
 
 if grep -qEi "(Microsoft|WSL)" /proc/version
@@ -48,6 +51,12 @@ if grep -qEi "(Microsoft|WSL)" /proc/version
     ssh-agent-relay.sh
 end
 
+set -gx PNPM_HOME "/home/wsl/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+
 set fish_greeting
 starship init fish | source
 direnv hook fish | source
+
