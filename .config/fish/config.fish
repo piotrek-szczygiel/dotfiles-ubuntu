@@ -12,8 +12,8 @@ alias svi "sudo -E nvim"
 
 alias l "exa"
 alias ls "exa"
-alias ll "exa -lF --git"
-alias la "exa -laF --git"
+alias ll "exa -lF"
+alias la "exa -laF"
 
 alias bat "batcat"
 alias fd "fdfind"
