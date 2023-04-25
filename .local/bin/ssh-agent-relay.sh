@@ -1,7 +1,8 @@
 #!/bin/bash
 
-ALREADY_RUNNING=$(ps -auxww | grep -q "[n]piperelay.exe -ei -s //./pipe/openssh-ssh-agent"; echo $?)
-if [[ $ALREADY_RUNNING != "0" ]]; then
+ssh-add -l > /dev/null &2>1
+if [[ $? != 0 ]]; then
+    pkill socat
     if [[ -S $SSH_AUTH_SOCK ]]; then
         echo "Removing previous socket..."
         rm $SSH_AUTH_SOCK
