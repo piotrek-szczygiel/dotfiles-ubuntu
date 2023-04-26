@@ -57,6 +57,6 @@ if not string match -q -- $PNPM_HOME $PATH
 end
 
 set fish_greeting
-starship init fish | source
+oh-my-posh init fish --config ~/.config/fish/theme.omp.json | source
 direnv hook fish | source
 

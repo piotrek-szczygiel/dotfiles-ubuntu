@@ -36,8 +36,14 @@ yadm clone -f https://github.com/piotrek-szczygiel/dotfiles-ubuntu
 log "Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:piotrek-szczygiel/dotfiles-ubuntu.git"
 
-log "Installing fish prompt"
-curl -sS https://starship.rs/install.sh | sh -s -- --yes
+log "Installing oh-my-posh"
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
+mkdir ~/.poshthemes
+wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip
+unzip ~/.poshthemes/themes.zip -d ~/.poshthemes
+chmod u+rw ~/.poshthemes/*.omp.*
+rm ~/.poshthemes/themes.zip
 
 log "Installing fish plugins"
 fish -c "fisher update"

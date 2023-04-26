@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ssh-add -l > /dev/null &2>1
+ssh-add -l > /dev/null 2>&1
 if [[ $? != 0 ]]; then
     pkill socat
     if [[ -S $SSH_AUTH_SOCK ]]; then
