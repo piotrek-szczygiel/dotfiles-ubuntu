@@ -38,7 +38,14 @@ log "Updating the yadm repo origin URL"
 yadm remote set-url origin "git@github.com:piotrek-szczygiel/dotfiles-ubuntu.git"
 
 log "Installing oh-my-posh"
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+
+ARCH=$(uname -m)
+case "$ARCH" in
+    aarch64) sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-arm64 -O /usr/local/bin/oh-my-posh ;;
+    x86_64)  sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh ;;
+    *)       log "Invalid architecture: $ARCH" && exit 1
+esac
+
 sudo chmod +x /usr/local/bin/oh-my-posh
 mkdir ~/.poshthemes
 wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip
@@ -51,8 +58,7 @@ fish -c "fisher update"
 
 log "Installing git-delta"
 arch="$(dpkg --print-architecture)"
-wget -q -O /tmp/delta.deb $(curl -s https://api.github.com/repos/dandavison/delta/releases/latest \
-    | jq --raw-output ".assets[] | select(.name | endswith(\"$arch.deb\")).browser_download_url" | tail -n 1)
+wget -q -O /tmp/delta.deb "$(curl -s https://api.github.com/repos/dandavison/delta/releases/latest | jq --raw-output ".assets[] | select(.name | endswith(\"$arch.deb\")).browser_download_url" | tail -n 1)"
 sudo dpkg -i /tmp/delta.deb
 
 
@@ -70,7 +76,7 @@ if grep -qEi "(Microsoft|WSL)" /proc/version &> /dev/null; then
 
     log "Configuring OpenSSH server"
     SSHD_FILE=/etc/ssh/sshd_config
-    sudo cp $SSHD_FILE ${SSHD_FILE}.`date '+%Y-%m-%d_%H-%M-%S'`.back
+    sudo cp $SSHD_FILE "${SSHD_FILE}.$(date '+%Y-%m-%d_%H-%M-%S').back"
     sudo sed -i "/^Port/ d" $SSHD_FILE
     sudo sed -i "/^ListenAddress/ d" $SSHD_FILE
     sudo sed -i "/^PasswordAuthentication/ d" $SSHD_FILE
