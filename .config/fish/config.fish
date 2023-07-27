@@ -51,7 +51,7 @@ if grep -qEi "(Microsoft|WSL)" /proc/version
     ssh-agent-relay.sh
 end
 
-set -gx PNPM_HOME "/home/wsl/.local/share/pnpm"
+set -gx PNPM_HOME ~/.local/share/pnpm
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
